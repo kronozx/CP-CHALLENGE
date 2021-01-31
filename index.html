@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+    
+    <title>todoApp - CP Contest</title>
+</head>
+<body>
+
+        <header id="header">
+                <h1>What do you want to accomplish today?</h1>
+        </header>
+
+        <form class="input-form" action="">
+            <input id="task-input" type="text" placeholder="Add New Todo">
+            <button type="Submit" id="task-submit-button" ><i class="fas fa-plus-square"></i></button>                
+        </form>
+
+        <div class="tasks-div-container">
+            <ul class="tasks-list">    
+            </ul>
+        </div>
+
+        <div class="modal-background">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2>Congratulations!</h2>    
+                </div>
+                
+                <div class="modal-body">
+                    <h4>You have completed <span id="tasks-completed-num"></span><span id="task-modal-span"></span> today!</h4>
+                    <ul id="modal-ul">   
+                    </ul>
+                    <div class="modal-buttons-div">
+                        <button id="modal-clear-button" class="modal-buttons">Clear Completed Todo's</button>
+                        <button id="modal-button" class="modal-buttons">Go for More!</button>
+                    </div>
+                </div>
+                
+                <span class="dismiss-modal">X</span>       
+            </div>
+        </div>
+
+        <div class="dark-achievements-div">
+            <span title="View my Achievements" class="my-achievements"><i class="fas fa-medal"></i></span>
+            <span title="Dark Mode" class="dark-mode-switch"><i class="fas fa-adjust"></i></span>
+        </div>
+        
+    
+        <div class="modal-achievements-background">
+            <div class="modal-achievements">
+                <div class="modal-achievements-header">
+                    <h2><i class="fas fa-medal"></i> My Achievements <i class="fas fa-medal"></i></h2>    
+                </div>
+                
+                <div class="modal-achievements-body">
+                    <h4>Look at what you have accomplished today!</h4>
+                    <ul id="modal-achievements-ul">   
+                    </ul>
+                    <div class="modal-achievements-buttons-div">
+                        <button id="modal-achievements-clear-button" class="modal-achievements-button">Clear Achievements List</button>
+                        <button id="modal-achievements-button" class="modal-achievements-button">Go for More!</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    <script src="todoApp.js" async></script>
+</body>
+</html>

@@ -1,0 +1,529 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --background-image: url("images/anders-jilden-5sxQH0ugTaA-unsplash.jpg");
+  --primary-color: white;
+  --header-color: white;
+  --header-text-shadow: rgba(0, 0, 0, 0.2);
+  --text-color: black;
+  --primary-color-background: white;
+  --input-button-color: #0e89fc;
+  --input-button-bg: white;
+  --input-button-hover: white;
+  --input-field-hover: rgb(241, 240, 240);
+  --li-hover-color: rgb(209, 208, 208);
+  --check-btn-color: rgb(4, 206, 4);
+  --check-btn-hover-color: rgb(3, 95, 3);
+  --edit-btn-color: rgb(235, 199, 38);
+  --edit-btn-hover-color: rgb(117, 96, 4);
+  --delete-btn-color: rgb(219, 69, 69);
+  --delete-btn-hover-color: rgb(129, 3, 3);
+  --buttons-hover-color: white;
+  --completed-li-color: rgb(87, 241, 87);
+  --edit-form-border-color: rgba(247, 249, 252, 0.925);
+  --edit-form-box-shadow: #ebc726;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --modal-background: white;
+  --modal-text-color: black;
+  --modal-header-bg: #35b719;
+  --modal-header-text: white;
+  --modal-color: #35b719;
+  --modal-buttons-bg: #35b719;
+  --modal-buttons-text: white;
+  --modal-hover-color: #237710;
+  --achievements-hover-color: rgba(255, 255, 255, 0.514);
+
+  background-image: var(--background-image);
+  color: var(--primary-color);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+body.dark {
+  --background-image: url("images/darkmode3.jpg");
+  --primary-color: #1cddcd;
+  --header-color: #1cddcd;
+  --header-text-shadow: #1cddcd;
+  --text-color: #1cddcd;
+  --primary-color-background: #504a40;
+  --input-button-color: #1cddcd;
+  --input-button-bg: #504a40;
+  --input-button-hover: #121212;
+  --input-field-hover: #121212;
+  --li-hover-color: #121212;
+  --check-btn-color: #b6efa1;
+  --check-btn-hover-color: #0b6b63;
+  --edit-btn-color: #1ddecb;
+  --edit-btn-hover-color: #9e7e60;
+  --delete-btn-color: #f89aba;
+  --delete-btn-hover-color: #862f2f;
+  --buttons-hover-color: #c5c7cb;
+  --completed-li-color: #1cd5c6;
+  --edit-form-border-color: rgba(29, 222, 203, 0.4);
+  --edit-form-box-shadow: #1ddecb;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --modal-background: #504a40;
+  --modal-text-color: #c5c7cb;
+  --modal-header-bg: #121212;
+  --modal-header-text: #1cddcd;
+  --modal-color: #1cddcd;
+  --modal-buttons-bg: #121212;
+  --modal-buttons-text: #1cddcd;
+  --modal-hover-color: #2c2c2c;
+  --achievements-hover-color: #e7eaee;
+
+  background-image: var(--background-image);
+  color: var(--primary-color);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+header {
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  color: var(--header-color);
+}
+
+header,
+.input-form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h1 {
+  text-align: center;
+  width: 80%;
+  margin-top: 5vh;
+  font-size: 2.8rem;
+  text-shadow: 1px 1px 3px var(--header-text-shadow);
+}
+
+.input-form input {
+  color: var(--text-color);
+}
+
+.input-form input,
+.input-form button {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: none;
+  background: var(--primary-color-background);
+  min-height: 6vh;
+}
+
+.input-form input:hover {
+  background: var(--input-field-hover);
+}
+
+.input-form input:focus {
+  outline-style: none;
+  background: var(--input-field-hover);
+}
+
+.input-form button {
+  color: var(--input-button-color);
+  background: var(--primary-color-background);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-form button:hover {
+  background: var(--input-button-color);
+  color: var(--input-button-hover);
+}
+
+.input-form button:focus {
+  outline-style: none;
+}
+
+.tasks-div-container {
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.tasks-list {
+  list-style: none;
+  min-width: 25%;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem;
+  background: var(--primary-color-background);
+  transition: transform 0.5s ease, opacity 0.5s ease-out;
+  opacity: 0;
+  transform: rotateX(-90deg);
+  max-height: 29px;
+}
+
+.show {
+  opacity: 1;
+  transform: none;
+}
+
+.todo:hover {
+  background: var(--li-hover-color);
+}
+
+.todo li {
+  flex: 1;
+  padding: 0rem 0.4rem;
+  transition: all 0.4s ease;
+}
+
+.complete-btn,
+.edit-btn,
+.delete-btn {
+  background-color: var(--check-btn-color);
+  color: var(--primary-color-background);
+  padding: 0.4rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.complete-btn:hover {
+  background-color: var(--check-btn-hover-color);
+  color: var(--buttons-hover-color);
+}
+
+.edit-btn {
+  background-color: var(--edit-btn-color);
+}
+
+.edit-btn:hover {
+  background-color: var(--edit-btn-hover-color);
+  color: var(--buttons-hover-color);
+}
+
+.delete-btn {
+  background-color: var(--delete-btn-color);
+}
+
+.delete-btn:hover {
+  background-color: var(--delete-btn-hover-color);
+  color: var(--buttons-hover-color);
+}
+
+.fa-check,
+.fa-edit,
+.fa-trash {
+  pointer-events: none;
+}
+
+.fade {
+  transform: translateY(6rem) rotateZ(20deg);
+  opacity: 0;
+}
+
+.completed {
+  background-color: var(--completed-li-color);
+  text-decoration: line-through;
+  transform: translateY(-2rem);
+  opacity: 0;
+}
+
+.editForm {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0rem;
+  background: var(--primary-color-background);
+  transition: all 0.4s ease;
+}
+
+.editForm input {
+  flex: 1;
+  text-align: left;
+  padding: 0rem 0.4rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  border: solid;
+  border-color: var(--edit-form-border-color);
+  background-color: var(--primary-color-background);
+}
+
+.editForm input:focus {
+  outline: none;
+  box-shadow: 0 0 12px var(--edit-form-box-shadow);
+}
+
+.editForm button {
+  background-color: var(--edit-btn-color);
+  color: var(--primary-color-background);
+  padding: 0.4rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.editForm button:hover {
+  background-color: var(--edit-btn-hover-color);
+  color: var(--buttons-hover-color);
+}
+
+/* Modal Styles - Complete Tasks */
+.modal-background {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--modal-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.4s, opacity 0.4s;
+}
+
+.modal {
+  background-color: var(--modal-background);
+  color: var(--modal-text-color);
+  min-width: 30%;
+  max-width: 90%;
+  max-height: 100%;
+  position: relative;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.background-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--modal-header-bg);
+  width: 100%;
+  height: 8%;
+  color: var(--modal-header-text);
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px auto;
+}
+
+.modal-body h4 {
+  text-align: center;
+  margin: 5px auto;
+}
+
+.modal-body ul {
+  margin: 3px auto;
+  list-style: none;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.modal-body ul li {
+  list-style: none;
+}
+
+.fa-flag-checkered {
+  color: var(--modal-color);
+  margin-right: 3px;
+}
+
+.modal-buttons-div {
+  display: flex;
+  margin-top: 5px;
+}
+
+.modal-buttons {
+  padding: 5px 10px;
+  background-color: var(--modal-buttons-bg);
+  color: var(--modal-buttons-text);
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  margin: 5px;
+}
+
+.modal-buttons:hover {
+  background-color: var(--modal-hover-color);
+}
+
+.dismiss-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-weight: bold;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.dismiss-modal:hover,
+.dismiss-modal:focus {
+  cursor: pointer;
+  color: var(--modal-text-color);
+}
+
+.dark-achievements-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 7%;
+  max-width: 20%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.dark-mode-switch {
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: opacity 0.4s;
+}
+
+.dark-mode-switch:hover {
+  color: var(--achievements-hover-color);
+}
+
+.my-achievements {
+  cursor: pointer;
+  font-size: 2rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.4s, opacity 0.4s;
+  margin-right: 3px;
+}
+
+.my-achievements-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.my-achievements:hover {
+  color: var(--achievements-hover-color);
+}
+
+/* Modal Styles - Achievements */
+.modal-achievements-background {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: var(--modal-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.4s, opacity 0.4s;
+}
+
+.modal-achievements-bg-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-achievements {
+  background-color: var(--modal-background);
+  color: var(--modal-text-color);
+  min-width: 30%;
+  max-width: 90%;
+  max-height: 100%;
+  position: relative;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.modal-achievements-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--modal-header-bg);
+  width: 100%;
+  height: 8%;
+  color: var(--modal-header-text);
+}
+
+.modal-achievements-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin: 5px auto;
+}
+
+.modal-achievements-body h4 {
+  text-align: center;
+  margin: 5px 10px;
+}
+
+.modal-achievements-body ul {
+  margin: 3px auto;
+  list-style: none;
+}
+
+.modal-achievements-body ul li {
+  list-style: none;
+}
+
+.modal-achievements-buttons-div {
+  display: flex;
+  margin-top: 5px;
+}
+
+.modal-achievements-button {
+  padding: 5px 10px;
+  background-color: var(--modal-buttons-bg);
+  color: var(--modal-buttons-text);
+  border: none;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  margin: 5px;
+}
+
+.modal-achievements-button:hover {
+  background-color: var(--modal-hover-color);
+}
+
+.dismiss-achievements-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-weight: bold;
+  color: var(--header-color);
+  cursor: pointer;
+}
+
+.dismiss-achievements-modal:hover,
+.dismiss-achievements-modal:focus {
+  cursor: pointer;
+  color: var(--modal-text-color);
+}
